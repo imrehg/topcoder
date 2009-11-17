@@ -45,3 +45,4 @@ examples = {"-6O&Qk9~czXENxRw!" : -4459230493565586372,
             "?>]s%E-s" : 7567427147094292,
             ",l{V<87Jb?!J" : 8420151027292092103}
 
+examplesrev = dict((v,k) for k, v in examples.iteritems())
