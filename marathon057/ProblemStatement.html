@@ -1,0 +1,188 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html><head> 
+<title>TopCoder</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link type="image/x-icon" rel="shortcut icon" href="http://www.topcoder.com/i/favicon.ico">
+</head>
+<body>
+
+<span class="bigHandle">Contest: 
+<a href="http://www.topcoder.com/longcontest/?module=ViewStandings&amp;rd=14162" class="bcLink">
+    Marathon Match 57
+</a></span><br>                
+            <span class="bodySubtitle">Problem: InverseHash</span><br>
+            <br>
+            <div>
+                <table><tbody><tr><td colspan="2"><h3>Problem Statement</h3></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td>A classic string hashing algorithm can be simply described by the following code, where long is a signed 64-bit integer type:
+<pre>    long hash(str){
+        long hash = 5381;
+
+        for(i = 0; i&lt;str.length; i++)
+            hash = (hash * 33) ^ str[i]; // '^' denotes XOR
+
+        return hash;
+    }
+
+</pre>
+You are given a long[] hashes. Each element of hashes 
+is a result of applying the described hashing algorithm to a randomly generated string.
+<br><br>
+
+Your task is to invert this algorithm. You must return a String[]
+which should contain the same number of elements as <b>hashes</b>. Applying the
+described hashing algorithm to each element of your return should produce the
+corresponding element of hashes.  Each element of your return should contain
+at most 10,000 characters, and each character of each element of your return
+must have ASCII code between 33 and 126, inclusive.  If you cannot find a
+string which hashes to a certain element of hashes, set the corresponding
+element of your return to "".  <br><br>
+
+
+Your score for a test case will be the sum of 1/(length of returned string)
+over all correct elements of your return of non-zero length.  Invalid return of any
+kind, including having the wrong number of elements in your return or characters with ASCII
+codes less than 33 or greater 126 results in zero score for that test case.  Zero-length strings in your
+return simply don't contribute to your score.  Valid strings that don't hash
+to the correct value will be treated in the same way as empty strings.  Your overall score
+will be the sum of scores for individual test cases.  <br><br>
+
+
+The input will be generated in a following way:
+<ol>
+<li>the number of strings will be chosen between 10 and 1000, inclusive</li>
+<li>the length of each string will be chosen independently between 4 and 20, inclusive</li>
+<li>each character of each string will be chosen between 33 and 126, inclusive</li>
+</ol>
+All variables are chosen randomly and uniformly.</td></tr><tr><td colspan="2">&nbsp;</td></tr><tr><td colspan="2"><h3>Definition</h3></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><table><tbody><tr><td>Class:</td><td>InverseHash</td></tr><tr><td>Method:</td><td>inverse</td></tr><tr><td>Parameters:</td><td>long[]</td></tr><tr><td>Returns:</td><td>String[]</td></tr><tr><td>Method signature:</td><td>String[] inverse(long[] hashes)</td></tr><tr><td colspan="2">(be sure your method is public)</td></tr></tbody></table></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td></tr><tr><td></td></tr><tr><td colspan="2">&nbsp;</td></tr><tr><td colspan="2"><h3>Notes</h3></td></tr><tr><td valign="top" align="center">-</td><td>There are 100 provisional test cases.</td></tr><tr><td colspan="2">&nbsp;</td></tr><tr><td colspan="2"><h3>Constraints</h3></td></tr><tr><td valign="top" align="center">-</td><td>The time limit is 10 seconds.</td></tr><tr><td valign="top" align="center">-</td><td>The memory limit is 1024MB.</td></tr><tr><td colspan="2">&nbsp;</td></tr><tr><td colspan="2"><h3>Examples</h3></td></tr><tr><td nowrap="true" align="center">0)</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><table><tbody><tr><td><pre>920 hashes
+0: -6O&amp;Qk9~czXENxRw! hashes to -4459230493565586372
+1: LRi~~&amp;ZA!GrUU{V hashes to 5501830964056691222
+2: dtzY&lt;EUr-\\(43~^ hashes to -8337223747280775818
+3: RU~nLF6Qnu hashes to 8245112492441997732
+4: *Wm- hashes to 6380591320
+5: L929U}MRV#}-A0tY hashes to 1460305034284426165
+6: &gt;`YjL}HrF&lt;Zm%0,I hashes to 2572936786439756830
+7: s)`PqJ3Z4pG\\xm^UG hashes to -5525835650212379589
+8: &lt;Rk%H}D&gt;PJ5!~={0 hashes to 3928777983488211852
+9: `r*0*(DYq3!_wW&gt;KJ6 hashes to 6271036284597753639
+...
+</pre></td></tr><tr><td><table><tbody><tr><td colspan="2"></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td nowrap="true" align="center">1)</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><table><tbody><tr><td><pre>911 hashes
+0: &lt;l-Jk)-}lr-D hashes to -9215950419413139433
+1: /Ood6 hashes to 210553093784
+2: J``Hc)=h hashes to 7571000880659480
+3: Sgoo5 hashes to 210684487780
+4: GEURYiJzlMo hashes to -4637535168201879794
+5: .V;$uM5' hashes to 7566717596914600
+6: x3zHC'6{Z+f5 hashes to -5887852083349028841
+7: n2PC6O2kny5DMO hashes to 3477693585084717134
+8: ?&gt;]s%E-s hashes to 7567427147094292
+9: ,l{V&lt;87Jb?!J hashes to 8420151027292092103
+...
+</pre></td></tr><tr><td><table><tbody><tr><td colspan="2"></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td nowrap="true" align="center">2)</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><table><tbody><tr><td><pre>942 hashes
+0: AISo-\\ hashes to 6951787708576
+1: TYE=]' hashes to 6952426506826
+2: qN/#*Y9k@pEz; hashes to -7062776074989436637
+3: rT_&amp; hashes to 6383284410
+4: &lt;H.,YK^j3UU= hashes to -9169455319257574853
+5: m8o=9% hashes to 6950803341374
+6: 6r@KDMD{`0I&gt;3% hashes to 8549194571211681485
+7: &amp;~o?zLrs%_;`{^ hashes to -7747257036548627714
+8: hui:v_DM%nwHhy;fZ hashes to 2733304970611327977
+9: DEy*k#|;!VH?* hashes to 2438409207087451346
+...
+</pre></td></tr><tr><td><table><tbody><tr><td colspan="2"></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td nowrap="true" align="center">3)</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><table><tbody><tr><td><pre>761 hashes
+0: z};Gz= hashes to 6951664462105
+1: CKSr&lt;&gt;^=]U=&lt;@M)H24 hashes to -2775172367091542514
+2: P4jkv}lpqD hashes to 8245155484588884834
+3: jgr~~w9EIjS hashes to -4668623916380232063
+4: -9r%l?aP$4)7kyh hashes to -7156532954763063600
+5: G12dr5XGFQojn(6w$&amp;2 hashes to 8199977158657504856
+6: ;59]('D\"WK)^_ hashes to -1286846458925831662
+7: e5{_$k hashes to 6950511923134
+8: y4@fJe~F hashes to 7570241829036505
+9: -(M*nay hashes to 229293420697617
+...
+</pre></td></tr><tr><td><table><tbody><tr><td colspan="2"></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td nowrap="true" align="center">4)</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><table><tbody><tr><td><pre>852 hashes
+0: 4~]\\`Umg%xY7{T}A\\=oi hashes to -2802808815202892714
+1: _x&lt;6vb(_C=XE hashes to -4339844057738111384
+2: .3{\"]y=D,Rj hashes to -4774862133067818200
+3: L.UvrP(\\.py-/ hashes to -4407161853640047305
+4: ^Z.15n0 hashes to 229437363778869
+5: SrSNUvHbL2 hashes to 8245203538883335086
+6: ~gY% hashes to 6383414528
+7: I1:Hu9_ hashes to 229420887377276
+8: EJk5jt hashes to 6951630305610
+9: aDpR]tReT@_B+aaF++w% hashes to 6284714148726438218
+...
+</pre></td></tr><tr><td><table><tbody><tr><td colspan="2"></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td nowrap="true" align="center">5)</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><table><tbody><tr><td><pre>586 hashes
+0: KhFZo[eo+h9`2,h+T0. hashes to 1402066366173238857
+1: nu(i)mS hashes to 229380938641288
+2: t8HID&gt;po)cv hashes to -4668656540645664303
+3: p%86Ju3'p hashes to 249806158964331205
+4: fF9y&lt;up$6&amp;b hashes to -4684997711342640790
+5: \"z^&gt;XVJr_f:W[rjwI8 hashes to -6212120274168065990
+6: G9$bufxQ=/0$8 hashes to 334084547605398201
+7: C$hK hashes to 6383736737
+8: =E&amp;7mB^Sri[Tw6s&amp;vVCZ hashes to -4345540928270390793
+9: JZiGFhFjr`CoP4G hashes to 7000553712153281476
+...
+</pre></td></tr><tr><td><table><tbody><tr><td colspan="2"></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td nowrap="true" align="center">6)</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><table><tbody><tr><td><pre>506 hashes
+0: 27?VU!7/i4:`fj.|a hashes to 334865303041701053
+1: &gt;&lt;gk.cpo&amp;qei5GmNZ=# hashes to -1747577732427159657
+2: HSJb/?CF.wMwMF7 hashes to -6499770471338768420
+3: #;K^'Z hashes to 6948243273749
+4: ;G\"w(1m:$BM hashes to -4748056293055541175
+5: =DKZ@,@ hashes to 229315629223393
+6: |\"z-pR$+*] hashes to 8243797952660047446
+7: |4sw7RRDz^5 hashes to -4656599248226620757
+8: EPT^?yy.g%G@|&amp;JjE? hashes to 8767638268308946894
+9: X'!el&lt;*9{irNvtAw5W,R hashes to -2089566484131462597
+...
+</pre></td></tr><tr><td><table><tbody><tr><td colspan="2"></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td nowrap="true" align="center">7)</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><table><tbody><tr><td><pre>289 hashes
+0: \"c`~q';hq)A hashes to -4784496259766143610
+1: 2@+LD7uy^5*&amp; hashes to 8992037327646049288
+2: *%$\"/mE]a:; hashes to -4769448707389501642
+3: 9kA[iVC hashes to 229321700083345
+4: kH7XQ&gt;3&gt;eRZ^XClI8 hashes to -6500336944718404546
+5: 2`=7{*B$E&amp; hashes to 8240639889548478185
+6: SlTN9^8WW hashes to 249855720111276927
+7: ]U+;lRab6 hashes to 249853765054500342
+8: [yODOLe7C+Ewn&amp;IShA hashes to -8510154841288666308
+9: _ze$_O&amp;hns:aZA`R!GD hashes to 9125600201344499442
+...
+</pre></td></tr><tr><td><table><tbody><tr><td colspan="2"></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td nowrap="true" align="center">8)</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><table><tbody><tr><td><pre>164 hashes
+0: &gt;uXM&gt;AMU9JVqI(; hashes to -5554446056225879374
+1: dmo]2) hashes to 6950387215557
+2: =&lt;V?ca*(^ hashes to 249722525005326227
+3: A!l\"La2'hY@ hashes to -4639165987492321534
+4: m?F}I*-PV hashes to 249791335504227908
+5: ~/o'dX@]jtPe6 hashes to 5689051823629226240
+6: -L~)V[.,M)nD/En hashes to 6775712747933239126
+7: IuG}wfw43*P]M^ hashes to -3181329448533517418
+8: 9xj&lt;XEQ6%J98fsW5)V hashes to -2442187885070038962
+9: XbP\\-&amp;jjKcI|u{hS\" hashes to -1386612256954665102
+...
+</pre></td></tr><tr><td><table><tbody><tr><td colspan="2"></td></tr></tbody></table></td></tr></tbody></table></td></tr><tr><td nowrap="true" align="center">9)</td><td></td></tr><tr><td>&nbsp;&nbsp;&nbsp;&nbsp;</td><td><table><tbody><tr><td><pre>620 hashes
+0: gXTcy hashes to 210625163764
+1: L%CE~qhG hashes to 7570830569724010
+2: |mOF&lt;r hashes to 6951307027123
+3: }e$FU9GT{s hashes to 8243756817752295560
+4: FG7xk, hashes to 6951742605964
+5: Z.~A]j!7,~D$6R0m~%^ hashes to -5459307163877088575
+6: D*&gt;m[^u~)'?y)naL%E hashes to 8416537084852756884
+7: -tx&amp;)cuPp54,kl?^1W hashes to -9181173968239343760
+8: Auc8djCa(0L%dc&gt;\"p.Z hashes to 1569005996737215432
+9: ?./(i hashes to 210575410330
+...
+</pre></td></tr><tr><td><table><tbody><tr><td colspan="2"></td></tr></tbody></table></td></tr></tbody></table></td></tr></tbody></table><hr><p>This
+problem statement is the exclusive and proprietary property of
+TopCoder, Inc. Any unauthorized use or reproduction of this information
+without the prior written consent of TopCoder, Inc. is strictly
+prohibited. (c)2006, TopCoder, Inc. All rights reserved. </p>
+
+            </div>
+        </td>
+        </td>
+    </tr>
+</tbody>
+</table>
+</body></html>
