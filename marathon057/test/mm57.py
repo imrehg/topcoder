@@ -45,10 +45,3 @@ examples = {"-6O&Qk9~czXENxRw!" : -4459230493565586372,
             "?>]s%E-s" : 7567427147094292,
             ",l{V<87Jb?!J" : 8420151027292092103}
 
-good = 0
-for example in examples.keys():
-    if (examples[example] == hash(example)):
-        good += 1
-    else:
-        print "Wrong hash: %s" %(example)
-print "Good: %d" %(good)
