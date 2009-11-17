@@ -3,6 +3,7 @@ Problem
 
 Can be found in ProblemStatement.html, copied and formatted from the TopCoder website. Not with their permission but for local convenience.
 
+
 Algorithm
 =========
 
@@ -11,15 +12,15 @@ lot of things to be taken into account:
 
 To reverse:
 
- 1. loop through numbers 33-126 (inclusive): **i**. XOR the current hash with **i**, and divide it by 33.
-   - If the result is and integer, keep the **i**
-     + If the integer is equal to *5381*, we arrived to the end
-   - Else discard and move to the next **i**
- 2. There will be more than one **i** for kept in this step, so have to loop through through them from step 1, and keep branching out until we get a the *5381*
+1.  loop through numbers 33-126 (inclusive): **i**. XOR the current hash with **i**, and divide it by 33.
+   *  If the result is and integer, keep the **i**
+     *  If the integer is equal to *5381*, we arrived to the end
+   *  Else discard and move to the next **i**
+2.  There will be more than one **i** for kept in this step, so have to loop through through them from step 1, and keep branching out until we get a the *5381*
 
 
 Things to keep in mind
 ======================
 
-+ Take into account the string length: 4 <= len <= 20. The lower limit is actually very necessary to avoid multiple same strings
-+ Need fast and reliable way to check "is integer?" in Java.
+*  Take into account the string length: 4 <= len <= 20. The lower limit is actually very necessary to avoid multiple same strings
+*  Need fast and reliable way to check "is integer?" in Java.
