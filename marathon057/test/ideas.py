@@ -1,6 +1,6 @@
 from __future__ import division
 from mm57 import hash
-
+from time import time
 
 def isint(test):
     if (int(test) - test) == 0:
@@ -14,30 +14,39 @@ def backhash(test, i):
     else:
         return 0
 
-def goodChars(test):
-    out = ""
-    end = 0
-    for i in range(33,127):
-        temp = backhash(test, i)
+def data2str(data, nchar):
+    string = ""
+    for i in range(nchar, -1, -1):
+        string += chr(data[i])
+    return string
 
-        if (int(temp) - temp) == 0:
-            out += chr(i)
-
-        if temp == 5381.0:
-            print "%c = END!" %(chr(i))
-            end = i
-    return (out, end)
-
-end = 0
-
-string = "fY"
+string = "0123456789"
 test = hash(string)
 print "Test: %s -> %d" %(string,test)
 
-out, end = goodChars(test)
-print out
-for i in range(0,len(out)):
-#    print backhash(test,ord(out[i]))
-    our, end = goodChars(backhash(test,ord(out[i])))
-    if (end > 0):
-        print "%c%c" %(chr(end),out[i])
+data = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+def recursehash(nchar, data, hashtemp):
+    if (nchar < 20):
+        for i in range(33, 127):
+            temp = backhash(hashtemp, i)
+            if isint(temp):
+                data[nchar] = i
+                if (temp == 5381.0):
+                    return (nchar, data)
+                if (temp >= 5381 * 30) | (temp < 0):
+#                    print data2str(data, nchar)
+                    (out1, out2) =  recursehash(nchar + 1, data, temp)
+                    if (out1 > 0):
+                        return (out1, out2)
+        return (0, [])
+    else :
+        return (0, [])
+
+start = time()
+out1, out2 = recursehash(0, data, test)
+print out1, out2
+res = data2str(out2, out1)
+print "Result: %s (%d)" %(res, hash(res))
+elapsed = time() - start
+print "Time: %f s" %(elapsed)
